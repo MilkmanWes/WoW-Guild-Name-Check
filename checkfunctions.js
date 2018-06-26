@@ -1,5 +1,5 @@
 function isUrlExists(url, cb) {
-    jQuery.ajax({
+    $.ajax({
         url: url,
         dataType: 'text',
         type: 'GET',
