@@ -1,4 +1,7 @@
 # WoW-Guild-Name-Check
+
+http://wowguildnamecheck.weshoward.me/
+
 Simple test to see which guild name candidate exists on your server
 
 Add the list of names in the box on the left, click the button in the middle, results on the right.
