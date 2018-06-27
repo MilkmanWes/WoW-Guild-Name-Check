@@ -27,25 +27,26 @@ function urlToName(name){
     nameFromURL = nameFromURL.replace("/", "");
     return nameFromURL
 }
-
 function checkNames() {
     emptyTable();
     var textArea = document.getElementById("textCandidateNames");
     var arrayOfLines = textArea.value.split("\n");
-    //var armoryURL = "http://us.battle.net/wow/en/guild/sargeras/"
     for (var i = 0; i < arrayOfLines.length; i++) {
         console.log(arrayOfLines[i])
-        //isUrlExists(armoryURL + arrayOfLines[i] + "/", function(status, url) {
-        isUrlExists(nameToURL(arrayOfLines[i]), function(status, url) {
-            console.log(arrayOfLines[i])
-            if (status === 200) {
-                candidateName = urlToName(url);
-                appendUnavailable([candidateName, "In Use"]);
-            } else if (status === 404) {
-                candidateName = urlToName(url);
-                appendAvailable([candidateName, "Available"]);
-            }
-        });
+        if (arrayOfLines[i].length > 32) {
+            appendUnavailable([arrayOfLines[i], "Too Long"]);
+        } else {
+            isUrlExists(nameToURL(arrayOfLines[i]), function(status, url) {
+                console.log(arrayOfLines[i])
+                if (status === 200) {
+                    candidateName = urlToName(url);
+                    appendUnavailable([candidateName, "In Use"]);
+                } else if (status === 404) {
+                    candidateName = urlToName(url);
+                    appendAvailable([candidateName, "Available"]);
+                }
+            });
+        }
     }
 }
 
