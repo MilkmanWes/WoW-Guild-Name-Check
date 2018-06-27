@@ -1,15 +1,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title></title>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <title>Guild Name Checker</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="checkfunctions.js"></script>
 </head>
 
 <body>
-    <textarea id="textCandidateNames" rows="20" cols="50">
-    </textarea>
-    <button onclick="checkNames()">Click me</button>
+    <div class="container row pt-3">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="exampleTextarea"><h2>Candidate Guild Names</h2></label>
+                <textarea class="form-control" id="textCandidateNames" rows="15"></textarea>
+            </div>
+        </div>
+        <div class="col-md-2 py-5">
+            <button class="btn btn-primary btn-lg" onclick="checkNames()">Check Names</button>
+        </div>
+        <div class="col-md-5">
+        	<h2>Results</h2>
+            <div id="results">
+                <table id="resultsTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Availability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+$.getJSON("https://bootswatch.com/api/4.json", function(data) {
+    var themes = data.themes;
+    var select = $("select");
+    $(".alert").toggleClass("alert-info alert-success");
+    $(".alert h4").text("Success!");
+    var theme = themes[18];
+    $("link").attr("href", theme.css);
+}, "json").fail(function() {
+    $(".alert").toggleClass("alert-info alert-danger");
+    $(".alert h4").text("Failure!");
+});
+</script>
 
 </html>
