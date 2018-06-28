@@ -2,24 +2,25 @@
 
 <head>
     <title>Guild Name Checker</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="checkfunctions.js"></script>
 </head>
 
 <body>
-    <div class="container row pt-3">
-        <div class="col-md-5">
+    <div class="container-fluid row pt-3 align-items-start">
+        <div class="col-12 col-md-6">
             <div class="form-group">
-                <label for="exampleTextarea"><h2>Candidate Guild Names</h2></label>
-                <textarea class="form-control" id="textCandidateNames" rows="15"></textarea>
+                <span style="font-size: 2.5vmax !important;">Candidate Guild Names</span>
+                <textarea class="form-control" id="textCandidateNames" rows="15" cols="33"></textarea>
             </div>
+            <div class="my-3"><select id="serverList"></select></div>
+            <div class="mb-3"><button class="btn btn-primary" onclick="checkNames()"><span style="font-size: 2vmax !important;">Check Names</span></button></div>
         </div>
-        <div class="col-md-2 py-5">
-            <button class="btn btn-primary btn-lg" onclick="checkNames()">Check Names</button>
-        </div>
-        <div class="col-md-5">
-        	<h2>Results</h2>
+        <div class="col-12 col-md-6">
+            <span style="font-size: 2.5vmax !important;">Results</span>
             <div id="results">
                 <table id="resultsTable" class="table table-hover">
                     <thead>
@@ -36,9 +37,17 @@
     </div>
 </body>
 <script>
+$.getJSON("servers.json", function(data) {
+    var servers = data.servers;
+    var select = $("select#serverList");
+    servers.forEach(function(value) {
+        select.append($("<option />")
+            .val(value.name)
+            .text(value.name + "  " + value.geo));
+    });
+});
 $.getJSON("https://bootswatch.com/api/4.json", function(data) {
     var themes = data.themes;
-    var select = $("select");
     $(".alert").toggleClass("alert-info alert-success");
     $(".alert h4").text("Success!");
     var theme = themes[18];
