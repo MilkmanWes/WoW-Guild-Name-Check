@@ -40,7 +40,7 @@ function checkNames() {
     var arrayOfLines = textArea.value.split("\n");
     for (var i = 0; i < arrayOfLines.length; i++) {
         console.log(arrayOfLines[i])
-        if (arrayOfLines[i].length > 32) {
+        if (arrayOfLines[i].length > 24) {
             appendUnavailable([arrayOfLines[i], "Too Long"]);
         } else {
             isUrlExists(nameToURL(arrayOfLines[i]), function(status, url) {
