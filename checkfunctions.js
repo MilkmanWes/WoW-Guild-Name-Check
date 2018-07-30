@@ -55,6 +55,7 @@ function checkNames() {
             });
         }
     }
+    $("#resultsTable").trigger("update");
 }
 
 function makeTable(container, data) {
