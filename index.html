@@ -40,7 +40,7 @@
 <script>
 $(document).ready(function() 
     { 
-        $("#resultsTable").tablesorter(); 
+        $("#resultsTable").tablesorter({cssAsc: "table-light", cssDesc: "table-active"}); 
     } 
 );
 $.getJSON("servers.json", function(data) {
