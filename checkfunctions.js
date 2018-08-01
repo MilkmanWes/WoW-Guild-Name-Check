@@ -44,7 +44,6 @@ function checkNames() {
             appendUnavailable([arrayOfLines[i], "Too Long"]);
         } else {
             isUrlExists(nameToURL(arrayOfLines[i]), function(status, url) {
-                console.log(arrayOfLines[i])
                 if (status === 200) {
                     candidateName = urlToName(url);
                     appendUnavailable([candidateName, "In Use"]);
@@ -55,6 +54,7 @@ function checkNames() {
             });
         }
     }
+    setTimeout(function(){ $("#resultsTable").trigger("update"); }, 1000);
 }
 
 function makeTable(container, data) {

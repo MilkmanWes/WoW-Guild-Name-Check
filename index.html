@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="checkfunctions.js"></script>
+    <script type="text/javascript" src="checkfunctions.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.js"></script>
 </head>
 
 <body>
@@ -37,6 +38,11 @@
     </div>
 </body>
 <script>
+$(document).ready(function() 
+    { 
+        $("#resultsTable").tablesorter({cssAsc: "table-light", cssDesc: "table-active"}); 
+    } 
+);
 $.getJSON("servers.json", function(data) {
     var servers = data.servers;
     var select = $("select#serverList");
